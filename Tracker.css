@@ -1,0 +1,132 @@
+body{
+    font-family: "Comfortaa",serif;
+}
+.header
+{
+    background-color: blue;
+    color:white;
+    padding-left:25px;
+    font-size: large;
+}
+.input-form
+{
+    display:flex;
+    border:1px black solid;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    margin:auto;
+    border: 1px black solid;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px blue;
+    margin-top:15px ;
+    padding: 25px 0px;
+}
+
+#add-button
+{
+    background: blue;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: x-large;
+    font-weight: white;
+}
+.inputs{
+    width: 30%;
+    padding: 5px;
+}
+.cards
+{
+    border:1px black solid;
+    display: flex;
+    flex-wrap: wrap;
+    width:95%;
+    margin:auto;
+    justify-content: space-between;
+}
+.card{
+    background-color: blue;
+    border:0px;
+    width: 18rem;
+    margin-bottom: 15px;
+    height: 150px;
+}
+.card-body
+{
+    color: white;
+    padding: 10px;
+
+}
+.Transcation-table
+{
+    border:1px black solid;
+    width: 95%;
+    margin: auto;
+    border-radius: 8px;
+    overflow: hidden;
+    font-weight: 900;
+    box-shadow: 0px 4px rgba(0,0,0,0.5);
+    padding:0px;
+}
+#header-row
+{
+    background-color: blue;
+}
+#header-row th{
+    padding:15px 10px;
+    color:white
+}
+.delete-button,delete-button:hover
+{
+    background-color:skyblue;
+    border-radius: 50%;
+    border: none;
+    width: 50px;
+    height:50px
+
+}
+@media only screen and (max-width: 768px) {
+    .header{
+        background:black
+    }
+    .input-form
+{
+    display:flex;
+    flex-direction: column;
+    border:1px black solid;
+    align-items: center;
+    gap:15px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+   
+}
+.inputs{
+    width: 75%;
+}
+#add-button
+{
+    background:black;
+    width: 200px;
+    border-radius:8px;
+    color:white;
+}
+.cards
+{
+    display: flex;
+    width:95%;
+    margin:auto;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.card{
+    width:150px;
+    border:0px;
+    height: 150px;
+    background: black;
+}
+#header-row
+{
+    background-color:black;
+}
+
+}

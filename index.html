@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .navbar
+        {
+            display: flex;
+            justify-content:space-between ;
+            align-items:center ;
+            background-color:black;
+            padding: 10px 20px;
+        }
+        .logo
+        {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav-links{
+            display: flex;
+            list-style: none;
+            padding: 0;
+        }
+        .nav-links li{
+            margin:0 15px;
+        }
+        .nav-links a{
+           color:aliceblue;
+           text-decoration: none;
+           transition: color 0.3s;
+        }
+        .nav-links a:hover{
+            color:red;
+        }
+        @media screen and(max-width:1200px){
+            .nav-links{
+                font-size:14px;
+                color:pink;
+            }
+            @media screen and(max-width:700px){
+            .nav-links{
+               display: block;
+               width: 100%;
+               text-align: center;
+               background-color: yellow;
+            }
+            .nav-links list-style
+            {
+                  margin:10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">brand</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">xyz</a></li>
+            </ul>
+    </nav>
+</body>
+</html>

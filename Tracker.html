@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="./Tracker.css">
+</head>
+  <body>
+    <div class="header">
+        <p class="m-0">Expense<br>Tracker
+        <img src="./images/image.png" alt="" width="35px"></p>
+    </div>
+    <div class="input-form">
+      <div class="form-floating inputs">
+        <input type="date" class="form-control dateInput" id="floatingInput" >
+        <label for="floatingInput">Date</label>
+      </div>
+      <div class="form-floating inputs">
+        <input type="email" class="form-control amountInput" id="floatingInput" placeholder="name@example.com">
+        <label for="floatingInput">Amount</label>
+      </div>
+      <select class="form-select inputs tanscationType" aria-label="Default select example">
+        <option selected>Transcation Type</option>
+        <option value="Income">Income</option>
+        <option value="Expense">Expense</option>
+        
+      </select>
+      
+      <button class="btn" id="add-button" onclick="addRow()">+</button>
+      </div>
+      <div class="cards mt-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title m-0">Total Income
+              <img src="./images/wallet-filled-money-tool.png" alt="Wallet Icon" width="35px">    
+              
+          </h5>
+          <h1 class="m-0">
+            <img src="./images/Currency (2).png" alt="" width="35px">
+            <span id="totalIncome">0</span>
+          </h1>
+        </div>
+      </div>
+      <div class="card" >
+        <div class="card-body">
+          <h5 class="card-title m-0">Total Expense
+            <img src="./images/Expense.png" alt="Currency Icon" width="35px">
+            
+            
+        </h5>
+        <h1 class="m-0">
+          <img src="./images/Currency (2).png" alt="" width="35px">
+          <span id="totalExpenceValue">0</span>
+        </h1>
+      </div>
+    </div>
+           <div class="card" >
+      <div class="card-body">
+        <h5 class="card-title m-0">Balence
+          <img src="./images/balence.png" alt="Balance Icon" width="35px">  
+      </h5>
+      <h1 class="m-0">
+        <img src="./images/Currency (2).png" alt="Currency Icon" width="35px">
+        
+        <span id="balence">0</span>
+      </h1>
+    </div>
+  </div>
+</div>
+<table class="Transcation-table" id="table">
+  <tr id="header-row">
+    <th>Amount</th>
+    <th>Transcation Type</th>
+    <th>Transaction Date</th>
+    <th>Action</th>
+  </tr>
+ 
+      
+       
+
+</table>
+   <script>
+    let table=document.getElementById('table');
+    console.log("Table:",table)
+    function deleteRow(row){
+       console.log('Hi from deleteRow function')
+       console.log(row);
+       row.remove();
+
+    }
+    function addRow()
+    {
+      let date=document.getElementsByClassName('dateInput')[0].value
+      let amount=document.getElementsByClassName('amountInput')[0].value
+      let transactionType = document.getElementsByClassName('tanscationType')[0].value;
+
+      if (!date || !amount || !transactionType || transactionType === "Transcation Type") {
+        alert("Please fill all fields before adding a row.");
+        return;  // Prevent the function from continuing
+    }
+      // Create a new row for the table
+      let row=document.createElement('tr')
+      let amountCell=document.createElement('td')
+      amountCell.innerText=amount;
+      let transactionCell=document.createElement('td')
+      transactionCell.innerText=transactionType;
+      let dateCell=document.createElement('td')
+      dateCell.innerText=date;
+      let binCell=document.createElement('td')
+      let deleteButton=document.createElement('button')
+      let binImage=document.createElement('img')
+      binImage.src='./images/recylebin.png'
+      binImage.style.width='25px'
+      binImage.style.height='25px'
+      deleteButton.appendChild(binImage)
+      deleteButton.classList.add('delete-button')
+      deleteButton.onclick=()=>deleteRow(row)
+
+      binCell.appendChild(deleteButton);
+
+      row.appendChild(amountCell)
+      row.appendChild(transactionCell)
+      row.appendChild(dateCell)
+      row.appendChild(binCell)
+      table.appendChild(row)
+     
+       // Get the current totals
+
+      let totalIncome=document.getElementById('totalIncome').innerText
+      let totalExpenceValue = parseInt(document.getElementById('totalExpenceValue').innerText);
+      let balence=document.getElementById('balence').innerText
+      if (transactionType === 'Income') {
+    // Add to total income
+    if (totalIncome === '0') {
+        document.getElementById('totalIncome').innerText = amount;
+    } else {
+        document.getElementById('totalIncome').innerText = parseInt(totalIncome) + parseInt(amount);
+    }
+
+    // Update balance for income
+    if (balence === '0') {
+        document.getElementById('balence').innerText = amount; // Add amount for income
+    } else {
+        document.getElementById('balence').innerText = parseInt(balence) + parseInt(amount);
+    }
+} else if (transactionType === 'Expense') {
+    // Add to total expense
+    if (totalExpenceValue === '0') {
+        document.getElementById('totalExpenceValue').innerText = amount;
+    } else {
+        document.getElementById('totalExpenceValue').innerText = parseInt(totalExpenceValue) + parseInt(amount);
+    }
+
+    // Update balance for expense (subtract from balance)
+    if (balence === '0') {
+        document.getElementById('balence').innerText = -amount; // Subtract amount for expense
+    } else {
+        document.getElementById('balence').innerText = parseInt(balence) - parseInt(amount);
+    }
+}
+
+console.log("Line 141:", totalIncome, totalExpenceValue, balence);
+
+}
+
+      
+   
+    </script>
+    
+    
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    </body>
+</html>
